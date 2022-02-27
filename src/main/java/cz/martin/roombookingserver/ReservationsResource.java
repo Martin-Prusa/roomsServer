@@ -22,7 +22,6 @@ public class ReservationsResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("application/json")
     public Response createReservation(Reservation reservation) {
-        System.out.println(reservation.toString());
         Optional<Room> op = roomsService.getRoom(id);
         if(!op.isPresent()) return Response.status(Response.Status.NOT_FOUND).build();
         if(op.get().createReservation(reservation)) return Response.ok().entity(reservation).build();
@@ -32,13 +31,19 @@ public class ReservationsResource {
     @PUT
     @Consumes("application/json")
     @Path("/{reservationId}")
-    public Response updateReservation(@PathParam("reservationId") String reservationId) {
-        return Response.ok().build();
+    public Response updateReservation(@PathParam("reservationId") String reservationId, Reservation reservation) {
+        Optional<Room> op = roomsService.getRoom(id);
+        if(!op.isPresent()) return Response.status(Response.Status.NOT_FOUND).build();
+        if(op.get().updateReservation(reservationId, reservation)) return Response.ok().build();
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @DELETE
     @Path("/{reservationId}")
     public Response deleteReservation(@PathParam("reservationId") String reservationId) {
+        Optional<Room> op = roomsService.getRoom(id);
+        if(!op.isPresent()) return Response.status(Response.Status.NOT_FOUND).build();
+        op.get().removeReservation(reservationId);
         return Response.noContent().build();
     }
 }

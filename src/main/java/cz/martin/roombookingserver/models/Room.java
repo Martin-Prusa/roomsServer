@@ -1,6 +1,7 @@
 package cz.martin.roombookingserver.models;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 
 public class Room {
@@ -28,6 +29,23 @@ public class Room {
 
     public boolean createReservation(Reservation reservation) {
         this.reservations.add(reservation);
+        return true;
+    }
+
+
+    public void removeReservation(String reservationId) {
+        this.reservations.removeIf(i -> i.getId().toString().equals(reservationId));
+    }
+
+    public boolean updateReservation(String reservationId, Reservation updated) {
+        Optional<Reservation> op = this.reservations.stream().filter(i -> i.getId().toString().equals(reservationId)).findFirst();
+        if(!op.isPresent()) return false;
+        Reservation res = op.get();
+        res.setEmail(updated.getEmail());
+        res.setFirstName(updated.getFirstName());
+        res.setLastName(updated.getLastName());
+        res.setFrom(updated.getFrom());
+        res.setTo(updated.getTo());
         return true;
     }
 
