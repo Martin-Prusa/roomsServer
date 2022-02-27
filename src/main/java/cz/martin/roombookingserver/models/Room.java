@@ -28,6 +28,8 @@ public class Room {
     }
 
     public boolean createReservation(Reservation reservation) {
+        if(reservation.getFrom().isAfter(reservation.getTo())) return false;
+        if(this.reservations.stream().anyMatch(i -> (reservation.getFrom().isAfter(i.getFrom()) && reservation.getFrom().isBefore(i.getTo())) || (reservation.getTo().isAfter(i.getFrom()) && reservation.getTo().isBefore(i.getTo())) )) return false;
         this.reservations.add(reservation);
         return true;
     }
