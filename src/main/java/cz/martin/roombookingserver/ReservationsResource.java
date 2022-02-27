@@ -25,7 +25,7 @@ public class ReservationsResource {
         Optional<Room> op = roomsService.getRoom(id);
         if(!op.isPresent()) return Response.status(Response.Status.NOT_FOUND).build();
         if(op.get().createReservation(reservation)) return Response.ok().entity(reservation).build();
-        return Response.status(Response.Status.BAD_REQUEST).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity("Datum je již zarezervované").build();
     }
     
     @PUT
@@ -35,7 +35,7 @@ public class ReservationsResource {
         Optional<Room> op = roomsService.getRoom(id);
         if(!op.isPresent()) return Response.status(Response.Status.NOT_FOUND).build();
         if(op.get().updateReservation(reservationId, reservation)) return Response.ok().build();
-        return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.status(Response.Status.NOT_FOUND).entity("Datum je již zarezervované").build();
     }
     
     @DELETE
