@@ -1,5 +1,6 @@
 package cz.martin.roombookingserver;
 
+import cz.martin.roombookingserver.interfaces.IRoomsService;
 import cz.martin.roombookingserver.models.Room;
 
 import javax.inject.Inject;
@@ -11,7 +12,7 @@ import java.util.Optional;
 public class RoomsResource {
 
     @Inject
-    private RoomsService roomsService;
+    private IRoomsService roomsService;
 
     @GET
     @Produces("application/json")

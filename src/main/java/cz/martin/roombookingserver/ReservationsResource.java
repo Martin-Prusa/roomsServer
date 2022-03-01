@@ -1,5 +1,6 @@
 package cz.martin.roombookingserver;
 
+import cz.martin.roombookingserver.interfaces.IRoomsService;
 import cz.martin.roombookingserver.models.MyError;
 import cz.martin.roombookingserver.models.Reservation;
 import cz.martin.roombookingserver.models.Room;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class ReservationsResource {
 
     @Inject
-    private RoomsService roomsService;
+    private IRoomsService roomsService;
 
     @PathParam("id")
     private String id;
