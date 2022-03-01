@@ -7,4 +7,8 @@ public class MyError {
     public MyError(String error) {
         this.error = error;
     }
+
+    public String getError() {
+        return error;
+    }
 }

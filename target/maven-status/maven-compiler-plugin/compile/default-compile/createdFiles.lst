@@ -1,9 +1,9 @@
-cz/martin/roombookingserver/models/Error.class
 cz/martin/roombookingserver/ReservationsResource.class
 cz/martin/roombookingserver/Cors.class
 cz/martin/roombookingserver/models/ValidationError.class
 cz/martin/roombookingserver/RoomsService.class
 cz/martin/roombookingserver/models/Reservation.class
 cz/martin/roombookingserver/RoomsResource.class
+cz/martin/roombookingserver/models/MyError.class
 cz/martin/roombookingserver/RoomsApplication.class
 cz/martin/roombookingserver/models/Room.class
