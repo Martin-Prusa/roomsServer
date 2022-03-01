@@ -1,8 +1,8 @@
 package cz.martin.roombookingserver.models;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -13,10 +13,10 @@ public class Room {
     private UUID id;
 
     @NotNull
-    @Length(min = 1, max = 10)
+    @Size(min = 1, max = 10)
     private String title;
 
-    @Length(min = 3, max = 50)
+    @Size(min = 3, max = 50)
     @NotNull
     private String description;
 
