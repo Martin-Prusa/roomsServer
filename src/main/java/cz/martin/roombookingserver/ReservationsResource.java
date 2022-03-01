@@ -2,6 +2,7 @@ package cz.martin.roombookingserver;
 
 import cz.martin.roombookingserver.models.Reservation;
 import cz.martin.roombookingserver.models.Room;
+import cz.martin.roombookingserver.models.ValidationError;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -24,8 +25,10 @@ public class ReservationsResource {
     public Response createReservation(Reservation reservation) {
         Optional<Room> op = roomsService.getRoom(id);
         if(!op.isPresent()) return Response.status(Response.Status.NOT_FOUND).build();
-        if(op.get().createReservation(reservation)) return Response.ok().entity(reservation).build();
-        return Response.status(Response.Status.BAD_REQUEST).entity("Datum je již zarezervované").build();
+        ValidationError status = op.get().createReservation(reservation);
+        if(status == ValidationError.OK) return Response.ok().entity(reservation).build();
+        if(status == ValidationError.FROM_IS_AFTER_TO) return Response.status(Response.Status.BAD_REQUEST).entity(new Error("Invalid dates")).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity(new Error("Time is already reserved")).build();
     }
     
     @PUT
