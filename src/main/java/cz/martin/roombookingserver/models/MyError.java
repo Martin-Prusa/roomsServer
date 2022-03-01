@@ -1,10 +1,10 @@
 package cz.martin.roombookingserver.models;
 
-public class Error {
+public class MyError {
 
     private String error;
 
-    public Error(String error) {
+    public MyError(String error) {
         this.error = error;
     }
 }

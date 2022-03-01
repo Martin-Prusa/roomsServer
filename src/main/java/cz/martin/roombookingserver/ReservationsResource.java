@@ -1,5 +1,6 @@
 package cz.martin.roombookingserver;
 
+import cz.martin.roombookingserver.models.MyError;
 import cz.martin.roombookingserver.models.Reservation;
 import cz.martin.roombookingserver.models.Room;
 import cz.martin.roombookingserver.models.ValidationError;
@@ -27,8 +28,8 @@ public class ReservationsResource {
         if(!op.isPresent()) return Response.status(Response.Status.NOT_FOUND).build();
         ValidationError status = op.get().createReservation(reservation);
         if(status == ValidationError.OK) return Response.ok().entity(reservation).build();
-        if(status == ValidationError.FROM_IS_AFTER_TO) return Response.status(Response.Status.BAD_REQUEST).entity(new Error("Invalid dates")).build();
-        return Response.status(Response.Status.BAD_REQUEST).entity(new Error("Time is already reserved")).build();
+        if(status == ValidationError.FROM_IS_AFTER_TO) return Response.status(Response.Status.BAD_REQUEST).entity(new MyError("Invalid dates")).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity(new MyError("Time is already reserved")).build();
     }
     
     @PUT
