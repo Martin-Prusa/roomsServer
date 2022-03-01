@@ -1,15 +1,33 @@
 package cz.martin.roombookingserver.models;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Reservation {
 
     private UUID id;
+
+    @Email(message = "Email should be valid")
+    @NotNull
     private String email;
+
+    @Length(min = 3, max = 50, message = "About Me must be between 3 and 50 characters")
+    @NotNull
     private String firstName;
+
+    @Length(min = 3, max=50 , message = "About Me must be between 3 and 50 characters")
+    @NotNull
     private String lastName;
+
+    @NotNull
     private LocalDateTime from;
+
+    @NotNull
     private LocalDateTime to;
 
     public Reservation(String email, String firstName, String lastName, LocalDateTime from, LocalDateTime to) {

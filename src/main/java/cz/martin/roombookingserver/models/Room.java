@@ -1,5 +1,9 @@
 package cz.martin.roombookingserver.models;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
+
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
@@ -7,10 +11,23 @@ import java.util.UUID;
 public class Room {
 
     private UUID id;
+
+    @NotNull
+    @Length(min = 1, max = 10)
     private String title;
+
+    @Length(min = 3, max = 50)
+    @NotNull
     private String description;
+
+    @Size(min = 1, max=10000)
+    @NotNull
     private int seats;
+
+    @Size(max = 999999)
+    @NotNull
     private int price;
+
     private ArrayList<Reservation> reservations;
 
     public Room(String title, String description, int seats, int price) {

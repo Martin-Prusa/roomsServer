@@ -6,4 +6,5 @@ cz/martin/roombookingserver/models/Reservation.class
 cz/martin/roombookingserver/RoomsResource.class
 cz/martin/roombookingserver/models/MyError.class
 cz/martin/roombookingserver/RoomsApplication.class
+cz/martin/roombookingserver/interfaces/IRoomsService.class
 cz/martin/roombookingserver/models/Room.class
